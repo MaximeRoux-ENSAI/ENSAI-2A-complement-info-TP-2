@@ -1,0 +1,21 @@
+from business_object.pokemon.attacker_pokemon import AttackerPokemon
+from business_object.statistic import Statistic
+
+
+class TestAttackerPokemon:
+    def test_get_coef_damage_type(self):
+        # GIVEN
+        # Formula: 1 + (speed + attack) / 200
+        pikachu = AttackerPokemon(stat_current=Statistic(attack=100, speed=100))
+
+        # WHEN
+        multiplier = pikachu.get_pokemon_attack_coef()
+
+        # THEN
+        # Expected: 1 + (100 + 100) / 200 = 1 + 200/200 = 2
+        assert multiplier == 2
+
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])
